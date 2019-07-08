@@ -6,7 +6,7 @@ namespace Bornfight\JsonApiBundle;
 use Bornfight\JsonApiBundle\DependencyInjection\JsonApiExtension;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class JsonApiBundle extends Bundle
+class JsonApiMakerBundle extends Bundle
 {
     public function getContainerExtension()
     {

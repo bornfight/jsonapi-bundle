@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Symfony\Bundle\JsonApiBundle\Tests\Maker;
 
-use Bornfight\JsonApiBundle\JsonApiBundle;
+use Bornfight\JsonApiBundle\JsonApiMakerBundle;
 use Bornfight\JsonApiBundle\Test\MakerTestCase;
 use Generator;
 use Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle;
@@ -107,7 +107,7 @@ class FunctionalTestKernel extends Kernel implements CompilerPassInterface
         return [
             new FrameworkBundle(),
             new SensioFrameworkExtraBundle(),
-            new JsonApiBundle(),
+            new JsonApiMakerBundle(),
             new MakerBundle()
         ];
     }
