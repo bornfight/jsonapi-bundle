@@ -1,12 +1,13 @@
 <?php
+declare(strict_types=1);
 
-namespace Paknahad\JsonApiBundle\Maker;
+namespace Bornfight\JsonApiBundle\Maker;
 
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Doctrine\Common\Inflector\Inflector;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
-use Paknahad\JsonApiBundle\Collection\PostmanCollectionGenerator;
-use Paknahad\JsonApiBundle\Collection\SwaggerCollectionGenerator;
+use Bornfight\JsonApiBundle\Collection\PostmanCollectionGenerator;
+use Bornfight\JsonApiBundle\Collection\SwaggerCollectionGenerator;
 use Symfony\Bundle\MakerBundle\ConsoleStyle;
 use Symfony\Bundle\MakerBundle\DependencyBuilder;
 use Symfony\Bundle\MakerBundle\Doctrine\DoctrineHelper;
@@ -23,9 +24,6 @@ use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validation;
 
-/**
- * @author Hamid Paknahad <hp.paknahad@gmail.com>
- */
 final class ApiCrud extends AbstractMaker
 {
     private $postmanGenerator;
@@ -44,7 +42,7 @@ final class ApiCrud extends AbstractMaker
 
     public static function getCommandName(): string
     {
-        return 'make:api';
+        return 'make:json-api';
     }
 
     /**
@@ -147,7 +145,7 @@ final class ApiCrud extends AbstractMaker
         $entityTypeVarPlural = Str::asTwigVariable($entityVarPlural);
 
         $routeName = Str::asRouteName($entityVarPlural);
-        $routePath = '/' . Str::asCommand($entityVarPlural);
+        $routePath = '/'.Str::asCommand($entityVarPlural);
         $skeletonPath = __DIR__.'/../Resources/skeleton/';
 
         $generator->generateClass(
@@ -261,7 +259,7 @@ final class ApiCrud extends AbstractMaker
     /**
      * {@inheritdoc}
      */
-    public function configureDependencies(DependencyBuilder $dependencies)
+    public function configureDependencies(DependencyBuilder $dependencies): void
     {
         $dependencies->addClassDependency(
             Route::class,
