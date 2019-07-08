@@ -7,13 +7,13 @@
     <services>
         <defaults autowire="true" autoconfigure="true" public="false" />
 
-        <service id="jsonapi.error.handler.event" class="Paknahad\JsonApiBundle\EventSubscriber\JsonApiErrorHandlerEvent" lazy="true">
+        <service id="jsonapi.error.handler.event" class="Bornfight\JsonApiBundle\EventSubscriber\JsonApiErrorHandlerEvent" lazy="true">
             <tag name="event_subscriber" />
             <argument type="service" id="WoohooLabs\Yin\JsonApi\JsonApi" />
             <argument key="$environment">%kernel.environment%</argument>
         </service>
 
-        <service id="jsonapi.jsonApi.factory" class="Paknahad\JsonApiBundle\Factory\JsonApiFactory">
+        <service id="jsonapi.jsonApi.factory" class="Bornfight\JsonApiBundle\Factory\JsonApiFactory">
             <argument type="service" id="sensio_framework_extra.psr7.http_message_factory" />
             <argument type="service" id="request_stack" />
         </service>
@@ -22,42 +22,42 @@
             <factory service="jsonapi.jsonApi.factory" method="create" />
         </service>
 
-        <service id="jsonapi.postman_collection_generator" class="Paknahad\JsonApiBundle\Collection\PostmanCollectionGenerator">
+        <service id="jsonapi.postman_collection_generator" class="Bornfight\JsonApiBundle\Collection\PostmanCollectionGenerator">
             <argument type="service" id="maker.file_manager" />
             <argument>%kernel.project_dir%</argument>
         </service>
 
-        <service id="jsonapi.swagger_collection_generator" class="Paknahad\JsonApiBundle\Collection\SwaggerCollectionGenerator">
+        <service id="jsonapi.swagger_collection_generator" class="Bornfight\JsonApiBundle\Collection\SwaggerCollectionGenerator">
             <argument type="service" id="maker.file_manager" />
             <argument>%kernel.project_dir%</argument>
         </service>
 
-        <service id="maker.maker.make_api" class="Paknahad\JsonApiBundle\Maker\ApiCrud">
+        <service id="maker.maker.make_json-api" class="Bornfight\JsonApiBundle\Maker\ApiCrud">
             <tag name="maker.command" />
             <argument type="service" id="jsonapi.postman_collection_generator" />
             <argument type="service" id="jsonapi.swagger_collection_generator" />
             <argument type="service" id="maker.doctrine_helper" />
         </service>
 
-        <service class="Paknahad\JsonApiBundle\Helper\Filter\Finder" id="paknahad_json_api.helper_filter.finder">
-            <tag name="paknahad.json_api.finder" />
+        <service class="Bornfight\JsonApiBundle\Helper\Filter\Finder" id="bornfight_json_api.helper_filter.finder">
+            <tag name="bornfight.json_api.finder" />
         </service>
 
-        <service id="Paknahad\JsonApiBundle\Helper\Filter\FinderCollection">
-            <argument type="tagged" tag="paknahad.json_api.finder" />
+        <service id="Bornfight\JsonApiBundle\Helper\Filter\FinderCollection">
+            <argument type="tagged" tag="bornfight.json_api.finder" />
         </service>
 
-        <service id="Paknahad\JsonApiBundle\Helper\Paginator" />
+        <service id="Bornfight\JsonApiBundle\Helper\Paginator" />
 
-        <service id="Paknahad\JsonApiBundle\Helper\Sorter" />
-        <service id="Paknahad\JsonApiBundle\Helper\FieldManager" />
+        <service id="Bornfight\JsonApiBundle\Helper\Sorter" />
+        <service id="Bornfight\JsonApiBundle\Helper\FieldManager" />
 
-        <service id="Paknahad\JsonApiBundle\Helper\ResourceCollection" class="Paknahad\JsonApiBundle\Helper\ResourceCollection">
+        <service id="Bornfight\JsonApiBundle\Helper\ResourceCollection" class="Bornfight\JsonApiBundle\Helper\ResourceCollection">
             <argument type="service" id="request_stack"/>
-            <argument type="service" id="Paknahad\JsonApiBundle\Helper\Filter\FinderCollection" />
-            <argument type="service" id="Paknahad\JsonApiBundle\Helper\Paginator" />
-            <argument type="service" id="Paknahad\JsonApiBundle\Helper\Sorter" />
-            <argument type="service" id="Paknahad\JsonApiBundle\Helper\FieldManager" />
+            <argument type="service" id="Bornfight\JsonApiBundle\Helper\Filter\FinderCollection" />
+            <argument type="service" id="Bornfight\JsonApiBundle\Helper\Paginator" />
+            <argument type="service" id="Bornfight\JsonApiBundle\Helper\Sorter" />
+            <argument type="service" id="Bornfight\JsonApiBundle\Helper\FieldManager" />
         </service>
 
     </services>

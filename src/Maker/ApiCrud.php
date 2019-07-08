@@ -213,7 +213,7 @@ final class ApiCrud extends AbstractMaker
                 'entity_full_class_name' => $entityClassDetails->getFullName(),
                 'entity_class_name' => $entityClassDetails->getShortName(),
                 'entity_var_name' => lcfirst($entityVarSingular),
-                'entity_type_var_plural' => Str::asCamelCase($entityTypeVarPlural),
+                'entity_type_var_plural' => Str::asLowerCamelCase($entityTypeVarPlural),
                 'namespace' => $transformerClassDetails->getFullName(),
                 'fields' => $fields,
                 'associations' => $associations,
